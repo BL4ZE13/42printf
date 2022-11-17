@@ -6,24 +6,31 @@
 #    By: diomarti <diomarti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 16:22:40 by diomarti          #+#    #+#              #
-#    Updated: 2022/11/15 16:37:20 by diomarti         ###   ########.fr        #
+#    Updated: 2022/11/17 15:36:39 by diomarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+NAME	=	libftprintf.a
 
-SRC = 
+FILES	=	ft_printf.c ft_numbers.c ft_words.c\
 
-CC = gcc
-RM = rf -f
-CFLAGS = -Wall -Wextra -Wall -I
+OBJS	=	$(FILES:.c=.o)
 
-all: $(NAME)
+RM	= rm -f
 
-$(NAME): $(SRC:=.o)
-			ar rc $(NAME) $(SRC:=.o)
+CC	= gcc
+
+CFLAGS	= -Wall -Wextra -Werror -I.
+
+all:	$(NAME)
+
+$(NAME):	$(OBJS)
+				ar rcs $(NAME) $(OBJS)
+
 clean:
-	$(RM)	$(SRC:=.o)
-fclean: clean
-		$(RM)	$(NAME)
-re: fclean $(NAME)
+		$(RM) $(OBJS)
+
+fclean:		clean
+		$(RM) $(NAME)
+
+re:		fclean all

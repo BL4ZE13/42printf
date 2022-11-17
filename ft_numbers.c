@@ -6,7 +6,7 @@
 /*   By: diomarti <diomarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 12:48:17 by diomarti          #+#    #+#             */
-/*   Updated: 2022/11/16 14:41:50 by diomarti         ###   ########.fr       */
+/*   Updated: 2022/11/17 15:45:29 by diomarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_putint(int n, int *len)
 	}
 	else if (n == -2147483648)
 	{
-		write(1, "-2147483648", 11);
+		write(1, "-2147483648", 12);
 		(*len) += 11;
 	}
 	else if (n < 0)
@@ -42,17 +42,14 @@ void	ft_putint(int n, int *len)
 void	ft_putuns(unsigned int n, int *len)
 {
 	if (n > 9)
-	{
 		ft_putuns(n / 10, len);
-		ft_putuns(n % 10, len);
-	}
-	ft_putchar((n + 48), len);
+	ft_putchar(((n % 10) + 48), len);
 }
 
 //%p hexa adress
 void	ft_puthadress(unsigned long n, int *len)
 {
-	char	*str;
+	char	str[17];
 	char	*h_base;
 	int		i;
 
@@ -74,13 +71,14 @@ void	ft_puthadress(unsigned long n, int *len)
 		n /= 16;
 		i++;
 	}
-	ft_putstring(str, len);
+	while (i--)
+		ft_putchar(str[i], len);
 }
 
 //%x %X
 void	ft_puthexa(unsigned long n, int *len)
 {
-	char	*str;
+	char	str[17];
 	char	*h_base;
 	int		i;
 
@@ -94,5 +92,6 @@ void	ft_puthexa(unsigned long n, int *len)
 		n /= 16;
 		i++;
 	}
-	ft_putstring(str, len);
+	while (i--)
+		ft_putchar(str[i], len);
 }
