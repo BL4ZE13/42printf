@@ -6,7 +6,7 @@
 /*   By: diomarti <diomarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:46:10 by diomarti          #+#    #+#             */
-/*   Updated: 2022/11/17 14:15:03 by diomarti         ###   ########.fr       */
+/*   Updated: 2022/11/18 13:24:16 by diomarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ void	format_check(char c, va_list *args, int *len, int *i)
 	else if (c == 'u')
 		ft_putuns(va_arg(*args, unsigned int), len);
 	else if (c == 'x')
-		ft_puthexa(va_arg(*args, unsigned long), len);
+		ft_puthexa(va_arg(*args, unsigned int), len, "0123456789abcdef");
 	else if (c == 'X')
-		ft_puthexa(va_arg(*args, unsigned long), len);
+		ft_puthexa(va_arg(*args, unsigned int), len, "0123456789ABCDEF");
 	else if (c == '%')
 		ft_putchar('%', len);
 	else
-		i--;
+		(*i)--;
 }
 
 int	ft_printf(const char *format, ...)
@@ -63,10 +63,10 @@ int	ft_printf(const char *format, ...)
 	return (len);
 }
 
-/*int main()
+/* int main()
 {
-	printf("%% %d %s %c %p %x\n", 10, "ola", 'c', (void *)42, 50);
-	ft_printf("%s\n","o");
-}*/
-
+	printf(" %lx \n", LONG_MIN);
+	ft_printf(" %x \n", LONG_MIN);
+}
+ */
 /*maiusculas minusculas*/

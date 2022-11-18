@@ -6,7 +6,7 @@
 /*   By: diomarti <diomarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:48:22 by diomarti          #+#    #+#             */
-/*   Updated: 2022/11/17 15:46:12 by diomarti         ###   ########.fr       */
+/*   Updated: 2022/11/18 13:23:04 by diomarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_putuns(unsigned int n, int *len);
 
 void	ft_puthadress(unsigned long n, int *len);
 
-void	ft_puthexa(unsigned long n, int *len);
+void	ft_puthexa(unsigned int n, int *len, const char *c);
 
 void	format_check(char c, va_list *args, int *len, int *i);
 

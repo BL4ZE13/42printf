@@ -6,7 +6,7 @@
 /*   By: diomarti <diomarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 12:48:17 by diomarti          #+#    #+#             */
-/*   Updated: 2022/11/17 15:45:29 by diomarti         ###   ########.fr       */
+/*   Updated: 2022/11/18 13:23:14 by diomarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,28 @@ void	ft_putint(int n, int *len)
 	char	c;
 
 	c = n + 48;
-	if (n > 9)
+	if (n >= INT_MIN && n <= INT_MAX)
 	{
-		ft_putint(n / 10, len);
-		ft_putint(n % 10, len);
+		if (n > 9)
+		{
+			ft_putint(n / 10, len);
+			ft_putint(n % 10, len);
+		}
+		else if (n == -2147483648)
+		{
+			write(1, "-2147483648", 11);
+			(*len) += 11;
+			return ;
+		}
+		else if (n < 0)
+		{
+			n = -n;
+			ft_putchar('-', len);
+			ft_putint(n, len);
+		}
+		else
+			ft_putchar(c, len);
 	}
-	else if (n == -2147483648)
-	{
-		write(1, "-2147483648", 12);
-		(*len) += 11;
-	}
-	else if (n < 0)
-	{
-		n = -n;
-		ft_putchar('-', len);
-		ft_putint(n, len);
-	}
-	else
-		ft_putchar(c, len);
 }
 
 //%u
@@ -76,19 +80,17 @@ void	ft_puthadress(unsigned long n, int *len)
 }
 
 //%x %X
-void	ft_puthexa(unsigned long n, int *len)
+void	ft_puthexa(unsigned int n, int *len, const char *c)
 {
 	char	str[17];
-	char	*h_base;
 	int		i;
 
 	i = 0;
-	h_base = "0123456789abcdef";
 	if (n == 0)
 		ft_putchar('0', len);
 	while (n != 0)
 	{
-		str[i] = h_base[n % 16];
+		str[i] = c[n % 16];
 		n /= 16;
 		i++;
 	}
