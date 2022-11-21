@@ -6,34 +6,34 @@
 /*   By: diomarti <diomarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:46:10 by diomarti          #+#    #+#             */
-/*   Updated: 2022/11/18 13:24:16 by diomarti         ###   ########.fr       */
+/*   Updated: 2022/11/21 15:35:10 by diomarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	format_check(char c, va_list *args, int *len, int *i)
+void	format_check(char c, va_list args, int *len, int i)
 {
 	if (c == 'c')
-		ft_putchar(va_arg(*args, int), len);
+		ft_putchar(va_arg(args, int), len);
 	else if (c == 's')
-		ft_putstring(va_arg(*args, char *), len);
+		ft_putstring(va_arg(args, char *), len);
 	else if (c == 'p')
-		ft_puthadress(va_arg(*args, unsigned long), len);
+		ft_puthadress(va_arg(args, unsigned long), len);
 	else if (c == 'd')
-		ft_putint(va_arg(*args, int), len);
+		ft_putint(va_arg(args, int), len);
 	else if (c == 'i')
-		ft_putint(va_arg(*args, int), len);
+		ft_putint(va_arg(args, int), len);
 	else if (c == 'u')
-		ft_putuns(va_arg(*args, unsigned int), len);
+		ft_putuns(va_arg(args, unsigned int), len);
 	else if (c == 'x')
-		ft_puthexa(va_arg(*args, unsigned int), len, "0123456789abcdef");
+		ft_puthexa(va_arg(args, unsigned int), len, "0123456789abcdef");
 	else if (c == 'X')
-		ft_puthexa(va_arg(*args, unsigned int), len, "0123456789ABCDEF");
+		ft_puthexa(va_arg(args, unsigned int), len, "0123456789ABCDEF");
 	else if (c == '%')
 		ft_putchar('%', len);
 	else
-		(*i)--;
+		i--;
 }
 
 int	ft_printf(const char *format, ...)
@@ -50,7 +50,7 @@ int	ft_printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
-			format_check(format[i], &args, &len, &i);
+			format_check(format[i], args, &len, i);
 			i++;
 		}
 		else
@@ -62,11 +62,3 @@ int	ft_printf(const char *format, ...)
 	va_end(args);
 	return (len);
 }
-
-/* int main()
-{
-	printf(" %lx \n", LONG_MIN);
-	ft_printf(" %x \n", LONG_MIN);
-}
- */
-/*maiusculas minusculas*/
